@@ -1,7 +1,8 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import InputHandler from './io/InputHandler.js';
 import InputValidator from './utils/InputValidator.js';
-import Car from './domain/Car.js';
+import GameController from './domain/GameController.js';
+import Car from './domain/Car.js'
 
 class App {
   #inputHandler;
@@ -13,19 +14,18 @@ class App {
   async run() {
     try {
       const carNames = await this.#inputHandler.readCarNames();
-      MissionUtils.Console.print(`입력된 자동차 이름: ${carNames}`);
       InputValidator.validateCarNames(carNames);
 
       const tryCountString = await this.#inputHandler.readTryCount();
-
       InputValidator.validateTryCount(tryCountString);
       const tryCount = Number(tryCountString);
-      MissionUtils.Console.print(`시도 횟수: ${tryCount}`);
 
       const cars = carNames.map(name => new Car(name));
-      const firstCar = cars[0];
-      firstCar.move();
-      MissionUtils.Console.print(`${firstCar.getName()} 현재 위치: ${firstCar.getPosition()}`);
+      const gameController = new GameController(cars, tryCount);
+
+      const { raceResults } = gameController.startRace();
+
+      MissionUtils.Console.print(`\n턴 수: ${raceResults.length}`);
 
     } catch (error) {
       MissionUtils.Console.print(error.message);
