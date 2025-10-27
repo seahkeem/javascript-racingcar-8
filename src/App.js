@@ -15,8 +15,11 @@ class App {
       MissionUtils.Console.print(`입력된 자동차 이름: ${carNames}`);
       InputValidator.validateCarNames(carNames);
 
-      const tryCount = await this.#inputHandler.readTryCount();
-      MissionUtils.Console.print(`입력된 시도 횟수: ${tryCount}`);
+      const tryCountString = await this.#inputHandler.readTryCount();
+
+      InputValidator.validateTryCount(tryCountString);
+      const tryCount = Number(tryCountString);
+      MissionUtils.Console.print(`시도 횟수: ${tryCount}`);
 
     } catch (error) {
       MissionUtils.Console.print(error.message);

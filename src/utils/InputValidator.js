@@ -21,6 +21,19 @@ class InputValidator {
       throw new Error(`${ERROR_MESSAGES.PREFIX} ${ERROR_MESSAGES.NAME_INVALID}`);
     }
   }
+
+  static validateTryCount(count) {
+    const trimmedCount = count.trim();
+    const numberCount = Number(trimmedCount);
+
+    if (Number.isNaN(numberCount)) {
+      throw new Error(`${ERROR_MESSAGES.PREFIX} ${ERROR_MESSAGES.COUNT_INVALID}`);
+    }
+
+    if (numberCount <= 0 || !Number.isInteger(numberCount)) {
+      throw new Error(`${ERROR_MESSAGES.PREFIX} ${ERROR_MESSAGES.COUNT_INVALID}`);
+    }
+  }
 }
 
 export default InputValidator;
