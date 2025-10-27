@@ -1,5 +1,6 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import InputHandler from './io/InputHandler.js';
+import InputValidator from './utils/InputValidator.js';
 
 class App {
   #inputHandler;
@@ -12,6 +13,7 @@ class App {
     try {
       const carNames = await this.#inputHandler.readCarNames();
       MissionUtils.Console.print(`입력된 자동차 이름: ${carNames}`);
+      InputValidator.validateCarNames(carNames);
 
       const tryCount = await this.#inputHandler.readTryCount();
       MissionUtils.Console.print(`입력된 시도 횟수: ${tryCount}`);
