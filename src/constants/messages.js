@@ -3,6 +3,11 @@ const INPUT_MESSAGES = Object.freeze({
   TRY_COUNT: '시도할 횟수는 몇 회인가요?',
 });
 
+const OUTPUT_MESSAGES = Object.freeze({
+  EXECUTION_RESULT: '실행 결과',
+  FINAL_WINNER: '최종 우승자 : ',
+});
+
 const ERROR_MESSAGES = Object.freeze({
   PREFIX: '[ERROR]',
   NAME_LENGTH: '자동차 이름은 5자 이하만 가능합니다.',
@@ -17,4 +22,4 @@ const CAR_CONSTANTS = Object.freeze({
   MAX_RANDOM_VALUE: 9,
 });
 
-export { INPUT_MESSAGES, ERROR_MESSAGES, CAR_CONSTANTS };
+export { INPUT_MESSAGES, OUTPUT_MESSAGES, ERROR_MESSAGES, CAR_CONSTANTS };

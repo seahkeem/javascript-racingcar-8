@@ -1,14 +1,16 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
 import InputHandler from './io/InputHandler.js';
 import InputValidator from './utils/InputValidator.js';
 import GameController from './domain/GameController.js';
-import Car from './domain/Car.js'
+import Car from './domain/Car.js';
+import OutputView from './io/OutputView.js';
 
 class App {
   #inputHandler;
+  #outputView;
 
   constructor() {
     this.#inputHandler = new InputHandler();
+    this.#outputView = new OutputView();
   }
 
   async run() {
@@ -23,12 +25,15 @@ class App {
       const cars = carNames.map(name => new Car(name));
       const gameController = new GameController(cars, tryCount);
 
-      const { raceResults } = gameController.startRace();
+      const { raceResults, winners } = gameController.startRace();
 
-      MissionUtils.Console.print(`\n턴 수: ${raceResults.length}`);
+      this.#outputView.printRaceResults(raceResults);
+      this.#outputView.printFinalWinners(winners);
 
     } catch (error) {
-      MissionUtils.Console.print(error.message);
+      this.#outputView.printError(error.message);
+
+      throw error;
     }
   }
 }
