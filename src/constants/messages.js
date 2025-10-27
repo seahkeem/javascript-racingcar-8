@@ -9,7 +9,7 @@ const OUTPUT_MESSAGES = Object.freeze({
 });
 
 const ERROR_MESSAGES = Object.freeze({
-  PREFIX: '[ERROR]',
+  PREFIX: '[ERROR] ',
   NAME_LENGTH: '자동차 이름은 5자 이하만 가능합니다.',
   NAME_INVALID: '자동차 이름 목록이 유효하지 않습니다.',
   COUNT_INVALID: '시도 횟수는 양의 정수만 가능합니다.',
